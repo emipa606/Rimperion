@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>Hyperion</defName>
+		<label>Hyperion</label>
+	</ResearchTabDef>
+
+	<ResearchProjectDef>
+		<defName>NegativeRecoil</defName>
+		<label>NegativeRecoil</label>
+		<description>To control recoil by utilizing energy generated at gun launch.</description>
+		<tab>Hyperion</tab>
+		<baseCost>3000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>ChargedShot</li>
+			<li>PrecisionRifling</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>    
+		<researchViewX>0</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+</Defs>

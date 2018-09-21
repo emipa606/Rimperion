@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<NegativeRecoil.NegativeRecoilWeaponBuffDef>
+		<defName>NegativeRecoilWeaponBuff</defName>
+		<maxLevel>18</maxLevel>
+		<duration>3</duration>
+		<additionalGunAccuracy>1.03</additionalGunAccuracy>		
+	</NegativeRecoil.NegativeRecoilWeaponBuffDef>
+	
+	<NegativeRecoil.NegativeRecoilPawnBuffDef>
+		<defName>NegativeRecoilPawnBuff</defName>
+		<maxLevel>10</maxLevel>
+		<duration>3</duration>
+		<additionalPawnAccuracy>1.05</additionalPawnAccuracy>		
+	</NegativeRecoil.NegativeRecoilPawnBuffDef>
+</Defs>
