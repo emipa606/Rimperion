@@ -37,12 +37,13 @@ namespace NegativeRecoil
 
         #region Constructors
         public NegativeRecoilWeaponBuff() { }
-        public NegativeRecoilWeaponBuff(string buffName,int maxLevel,float duration,float additional,ThingWithComps target)
+        public NegativeRecoilWeaponBuff(string buffName,int maxLevel,float duration,float additional,ThingWithComps caster,ThingWithComps target)
         {
             this.buffName = buffName;
             this.maxLevel = maxLevel;
             this.duration = GenTicks.SecondsToTicks(duration);
             this.additionalGunAccuracy = additional;
+            this.caster = caster;
             this.target = target;
 
             currentLevel = 1;
@@ -131,12 +132,13 @@ namespace NegativeRecoil
 
         #region Constructors
         public NegativeRecoilPawnBuff() { }
-        public NegativeRecoilPawnBuff(string buffName, int maxLevel, float duration, float additional, ThingWithComps target)
+        public NegativeRecoilPawnBuff(string buffName, int maxLevel, float duration, float additional,ThingWithComps caster, ThingWithComps target)
         {
             this.buffName = buffName;
             this.maxLevel = maxLevel;
             this.duration = GenTicks.SecondsToTicks(duration);
             this.additionalPawnAccuracy = additional;
+            this.caster = caster;
             this.target = target;
 
             currentLevel = 1;
@@ -243,92 +245,32 @@ namespace NegativeRecoil
             {
                 base.CasterPawn.records.Increment(RecordDefOf.ShotsFired);
             }
-
-            CompBuffManager compBuffM = CasterPawn.GetComp<CompBuffManager>();
-            if(compBuffM.BuffList.Count>0)
+            //WeaponBuff
+            CompBuffManager weaponBuffManager = EquipmentSource.GetComp<CompBuffManager>();
+            if(weaponBuffManager !=null)
             {
-                Log.Message(compBuffM.BuffList.Count.ToString());
-            }
-            NegativeRecoilProperties prop = this.verbProps as NegativeRecoilProperties;
-            if (compBuffM == null)
-            {
-                Log.Error(CasterPawn.ToString() + "doesn't have BuffManagerComponent");
-            }
-            else
-            {
-                try
-                {
-                    //Log.Message(prop.gunBuffName);
-                    NegativeRecoilWeaponBuff tempWeaponBuff = compBuffM.FindBuff(prop.gunBuffName) as NegativeRecoilWeaponBuff;
-                    if (tempWeaponBuff == null)
-                    {
-                        //Log.Message(prop.gunBuffName+"is none Create");
-                        try
-                        {
-                            tempWeaponBuff = new NegativeRecoilWeaponBuff(prop.gunBuffName, prop.gunMaxLevel, prop.gunDuration, prop.gunAddtional, EquipmentSource);
-                            tempWeaponBuff.Caster = CasterPawn;
-                            compBuffM.AddBuff(tempWeaponBuff);
-                            /*if(compBuffM.FindBuff(prop.gunBuffName)!=null)
-                            {
-                                Log.Message(compBuffM.FindBuff(prop.gunBuffName).BuffName + " alive");
-                            }*/
-                        }
-                        catch
-                        {
-                            Log.Error("Here");
-                        }
+                NegativeRecoilProperties prop = verbProps as NegativeRecoilProperties;
 
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if(tempWeaponBuff.Target == EquipmentSource)
-                            {
-                                tempWeaponBuff.AddLevel(1);
-                            }
-                            else
-                            {
-                                compBuffM.RemoveBuffAll(prop.gunBuffName);
-                                compBuffM.RemoveBuffAll(prop.pawnBuffName);
+                NegativeRecoilWeaponBuff negativeRecoilWeaponBuff = weaponBuffManager.FindBuff(prop.gunBuffName) as NegativeRecoilWeaponBuff;
+                if(negativeRecoilWeaponBuff==null)
+                {
+                    negativeRecoilWeaponBuff = new NegativeRecoilWeaponBuff(prop.gunBuffName, prop.gunMaxLevel, prop.gunDuration, prop.gunAddtional, EquipmentSource, EquipmentSource);
+                    weaponBuffManager.AddBuff(negativeRecoilWeaponBuff);
+                }
+                else
+                {
+                    negativeRecoilWeaponBuff.AddLevel(1);
+                }
 
-                                tempWeaponBuff = new NegativeRecoilWeaponBuff(prop.gunBuffName,prop.gunMaxLevel,prop.gunDuration,prop.gunAddtional, EquipmentSource);
-                                tempWeaponBuff.Caster = CasterPawn;
-                                compBuffM.AddBuff(tempWeaponBuff);
-                                
-                            }
-                            
-                        }
-                        catch
-                        {
-
-                            Log.Error(tempWeaponBuff.ToString() + " And Here");
-                        }
-                    }
-                }
-                catch
+                NegativeRecoilPawnBuff negativeRecoilPawnBuff = weaponBuffManager.FindBuff(prop.pawnBuffName) as NegativeRecoilPawnBuff;
+                if (negativeRecoilPawnBuff == null)
                 {
-                    Log.Error(CasterPawn.ToString() + "Add NegativeRecoilWeapon Error");
+                    negativeRecoilPawnBuff = new NegativeRecoilPawnBuff(prop.pawnBuffName, prop.pawnMaxLevel, prop.pawnDuration, prop.pawnAddtional, EquipmentSource, CasterPawn);
+                    weaponBuffManager.AddBuff(negativeRecoilPawnBuff);
                 }
-                //여기선 폰에게 반복
-                try
+                else
                 {
-                    
-                    NegativeRecoilPawnBuff tempPawnBuff = compBuffM.FindBuff(prop.pawnBuffName) as NegativeRecoilPawnBuff;
-                    if (tempPawnBuff == null)
-                    {
-                        tempPawnBuff = new NegativeRecoilPawnBuff(prop.pawnBuffName, prop.pawnMaxLevel, prop.pawnDuration, prop.pawnAddtional, CasterPawn);
-                        tempPawnBuff.Caster = CasterPawn;
-                        compBuffM.AddBuff(tempPawnBuff);
-                    }
-                    else
-                    {
-                        tempPawnBuff.AddLevel(1);
-                    }
-                }
-                catch
-                {
-                    Log.Error(CasterPawn.ToString() + "Add NegativeRecoilPawn Error");
+                    negativeRecoilPawnBuff.AddLevel(1);
                 }
             }
             return flag;
@@ -354,27 +296,22 @@ namespace NegativeRecoil
         #region Public Method
         public override void TransformValue(StatRequest req, ref float val)
         {
-
-            /*
-             * 1. 폰인지 확인
-             * 2. 폰이라면 들고잇는 무기가 네거티브리코일 무기인지 확인
-             * 3. 네거티브 리코일 무기라면 현재 해당무기가 장착 되어있는지 재차 확인.
-             * 4. 내가 적용대상이면 해당수치만큼 반환
-             */
-
             try
             {
                 if (req.HasThing)
                 {
                     Pawn pawn = req.Thing as Pawn;
-                    if(pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
+                    if(pawn.equipment.Primary!=null)
                     {
-                        CompBuffManager compBuffManager = pawn.GetComp<CompBuffManager>();
-                        NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
-                        if (buff != null)
+                        if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
-                            float additionalVal = Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel);
-                            val += (additionalVal - 1);
+                            CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
+                            NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
+                            if (buff != null)
+                            {
+                                float additionalVal = Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel);
+                                val += (additionalVal - 1);
+                            }
                         }
                     }
                 }
@@ -389,33 +326,36 @@ namespace NegativeRecoil
         }
         public override string ExplanationPart(StatRequest req)
         {
-            if (req.HasThing)
+            try
             {
-                try
+                if(req.HasThing)
                 {
-                    if(req.HasThing)
+                    Pawn pawn = req.Thing as Pawn;
+                    if (pawn.equipment.Primary != null)
                     {
-                        Pawn pawn = req.Thing as Pawn;
-                        CompBuffManager compBuffManager = pawn.GetComp<CompBuffManager>();
-                        NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
-                        if (buff != null)
+                        if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
-                            string text = "StatReport_AdditionalPawnAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
+                            CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
+                            NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
+                            if (buff != null)
+                            {
+                                string text = "StatReport_AdditionalPawnAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
 
-                            return text;
-                        }
+                                return text;
+                            }
+                        }                            
                     }
                 }
-                catch
+            }
+            catch
+            {
+                if(req.HasThing)
                 {
-                    if(req.HasThing)
-                    {
-                        Log.Error(parentStat.defName + " - "+req.Thing.ToString() + " ExplanationPart");
-                    }
-                    else
-                    {
-                        Log.Error(parentStat.defName + " - " + " ExplanationPart");
-                    }
+                    Log.Error(parentStat.defName + " - "+req.Thing.ToString() + " ExplanationPart");
+                }
+                else
+                {
+                    Log.Error(parentStat.defName + " - " + " ExplanationPart");
                 }
             }
             return string.Empty;
@@ -432,22 +372,15 @@ namespace NegativeRecoil
             {
                 if (req.HasThing)
                 {
-                    if (req.Thing.holdingOwner != null)
+                    if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
                     {
-                        Pawn_EquipmentTracker equipmentTracker = req.Thing.holdingOwner.Owner as Pawn_EquipmentTracker;
-                        if (equipmentTracker != null)
+                        ThingWithComps weaponThing = req.Thing as ThingWithComps;
+                        CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
+                        NegativeRecoilWeaponBuff buff = buffComp.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
+                        if(buff!=null)
                         {
-                            CompBuffManager compBuffManager = equipmentTracker.pawn.GetComp<CompBuffManager>();
-                            NegativeRecoilWeaponBuff buff = compBuffManager.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
-                            if(buff!=null)
-                            {
-                                float additionalVal = Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel);
-                                //Log.Message(this.parentStat.ToString() + ": " + val + "(val) + " + additionalVal + "(add) = " + (val + additionalVal));
-
-
-                                val += (additionalVal-1);
-                            }
-                            
+                            float additionalVal = Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel);
+                            val += (additionalVal - 1);
                         }
                     }
                 }
@@ -466,34 +399,22 @@ namespace NegativeRecoil
             {
                 try
                 {
-                    if (req.HasThing)
+                    if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
                     {
-                        if (req.Thing.holdingOwner != null)
+                        ThingWithComps weaponThing = req.Thing as ThingWithComps;
+                        CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
+                        NegativeRecoilWeaponBuff buff = buffComp.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
+                        if (buff != null)
                         {
-                            Pawn_EquipmentTracker equipmentTracker = req.Thing.holdingOwner.Owner as Pawn_EquipmentTracker;
-                            if (equipmentTracker != null)
-                            {
-                                CompBuffManager compBuffManager = equipmentTracker.pawn.GetComp<CompBuffManager>();
-                                NegativeRecoilWeaponBuff buff = compBuffManager.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
-                                if (buff != null)
-                                {
-                                    string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
-                                    return text;
-                                }
-                            }
+                            string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
+                            return text;
                         }
                     }
                 }
                 catch
                 {
-                    if (req.HasThing)
-                    {
-                        Log.Error(parentStat.defName + " - " + req.Thing.ToString() + " ExplanationPart");
-                    }
-                    else
-                    {
-                        Log.Error(parentStat.defName + " - " + " ExplanationPart");
-                    }
+                    Log.Error(parentStat.defName + " - " + req.Thing.ToString() + " ExplanationPart");
+                    
                 }
             }
             return string.Empty;
