@@ -28,5 +28,5 @@ Negative Recoil,a special Recoil control technology only for Hyperion makers, gi
 
 
 
-**this mod need [RimBuff](https://github.com/jhjjgu0115/RimBuff)**
+**This mod need [RimBuff](https://github.com/jhjjgu0115/RimBuff)**
 
