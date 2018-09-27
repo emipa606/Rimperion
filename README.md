@@ -19,9 +19,9 @@
 
 #### Add Borderlands Hyperion's Weapon
 #### Feature
-"Bringing perfection to the field."
-All Hyperion weapons get more accurate each time it fires.
-Negative Recoil,a special Recoil control technology only for Hyperion makers, gives you the best precision.
+"Bringing perfection to the field."  
+All Hyperion weapons get more accurate each time it fires.  
+Negative Recoil,a special Recoil control technology only for Hyperion makers, gives you the best precision.  
 
 #### Negative Recoil
 - Negative Recoil increases the accuracy rate every time a gun is fired.
