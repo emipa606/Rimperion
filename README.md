@@ -27,10 +27,3 @@ Negative Recoil,a special Recoil control technology only for Hyperion makers, gi
 - Negative Recoil increases the accuracy rate every time a gun is fired.
 - If you stop shooting, it will be restored rapidly.
 
-#### Add New Guns
-* HG
-* SMG
-* AR
-* RF
-* SG
-* LMG
