@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/documentation-Wiki-cc0303.svg?style=flat" alt="Documentation" />
   </a>  
   <a href="https://github.com/jhjjgu0115/RimBuff">
-    <img src="https://img.shields.io/badge/Need mod-RimBuff-cc0303.svg?style=flat" alt="Documentation" />
+    <img src="https://img.shields.io/badge/Need Mod-RimBuff-ffffff.svg?style=flat" alt="NeedMod" />
   </a>
 </p>
 
