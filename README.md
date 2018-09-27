@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
- Add Borderlands Hyperion's Weapon
+ **Add Borderlands Hyperion's Weapon**
 </p>
 
 ---------------------------------------
