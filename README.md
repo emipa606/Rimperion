@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
- Adds Borderlands Hyperion's Weapon
+ Adds Borderlands Hyperion style Weapon
 </p>
 
 ---------------------------------------
