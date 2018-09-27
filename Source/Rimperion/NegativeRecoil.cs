@@ -9,20 +9,6 @@ using RimWorld;
 
 namespace NegativeRecoil
 {
-    [DefOf]
-    public static class NegativeRecoilDefOf
-    {
-        public static NegativeRecoilWeaponBuffDef NegativeRecoilWeaponBuff;
-        public static NegativeRecoilPawnBuffDef NegativeRecoilPawnBuff;
-    }
-    public class NegativeRecoilWeaponBuffDef : BuffDef
-    {
-        public float additionalGunAccuracy;
-    }
-    public class NegativeRecoilPawnBuffDef : BuffDef
-    {
-        public float additionalPawnAccuracy;
-    }
 
     public class NegativeRecoilWeaponBuff : Buff
     {
@@ -74,22 +60,14 @@ namespace NegativeRecoil
 
         public override void OnCreate()
         {
-            OnRefresh();
         }
         public override void OnRefresh()
         {
             currentDuration = 0;
-            /*target.def.SetStatBaseValue(StatDefOf.AccuracyLong, initialLongValue + (Mathf.Pow(additionalGunAccuracy, currentLevel) - 1));
-            target.def.SetStatBaseValue(StatDefOf.AccuracyMedium, initialMediumValue + (Mathf.Pow(additionalGunAccuracy, currentLevel) - 1));
-            target.def.SetStatBaseValue(StatDefOf.AccuracyShort, initialShortValue + (Mathf.Pow(additionalGunAccuracy, currentLevel) - 1));*/
 
         }
         public override void OnDestroy()
         {
-            /*target.def.SetStatBaseValue(StatDefOf.AccuracyLong, initialLongValue);
-            target.def.SetStatBaseValue(StatDefOf.AccuracyMedium, initialMediumValue);
-            target.def.SetStatBaseValue(StatDefOf.AccuracyShort, initialShortValue);*/
-            owner.RemoveBuff(buffName);
         }
 
         public override void ExposeData()
@@ -103,11 +81,6 @@ namespace NegativeRecoil
             {
 
             }
-            /*
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-            {
-                additionalGunAccuracy = NegativeRecoilDefOf.NegativeRecoilWeaponBuff.additionalGunAccuracy;
-            }*/
         }
         #endregion
 
@@ -118,7 +91,7 @@ namespace NegativeRecoil
             OnRefresh();
             if (currentLevel <= 0)
             {
-                OnDestroy();
+                owner.RemoveBuff(this);
             }
         }
         #endregion
@@ -131,10 +104,14 @@ namespace NegativeRecoil
         #endregion
 
         #region Constructors
-        public NegativeRecoilPawnBuff() { }
+        public NegativeRecoilPawnBuff()
+        {
+            uniqueID = "needBuffName" + GetHashCode();
+        }
         public NegativeRecoilPawnBuff(string buffName, int maxLevel, float duration, float additional,ThingWithComps caster, ThingWithComps target)
         {
             this.buffName = buffName;
+            uniqueID = buffName + GetHashCode();
             this.maxLevel = maxLevel;
             this.duration = GenTicks.SecondsToTicks(duration);
             this.additionalPawnAccuracy = additional;
@@ -169,17 +146,13 @@ namespace NegativeRecoil
 
         public override void OnCreate()
         {
-            OnRefresh();
         }
         public override void OnRefresh()
         {
             currentDuration = 0;
-            //target.def.SetStatBaseValue(StatDefOf.ShootingAccuracyPawn, initialValue + (Mathf.Pow(additionalPawnAccuracy, currentLevel) - 1));
         }
         public override void OnDestroy()
         {
-            //target.def.SetStatBaseValue(StatDefOf.ShootingAccuracyPawn, initialValue);
-            owner.RemoveBuff(buffName);
         }
 
         public override void ExposeData()
@@ -204,7 +177,7 @@ namespace NegativeRecoil
             OnRefresh();
             if (currentLevel <= 0)
             {
-                OnDestroy();
+                owner.RemoveBuff(this);
             }
         }
         #endregion
@@ -251,7 +224,7 @@ namespace NegativeRecoil
             {
                 NegativeRecoilProperties prop = verbProps as NegativeRecoilProperties;
 
-                NegativeRecoilWeaponBuff negativeRecoilWeaponBuff = weaponBuffManager.FindBuff(prop.gunBuffName) as NegativeRecoilWeaponBuff;
+                NegativeRecoilWeaponBuff negativeRecoilWeaponBuff = weaponBuffManager.FindWithName(prop.gunBuffName) as NegativeRecoilWeaponBuff;
                 if(negativeRecoilWeaponBuff==null)
                 {
                     negativeRecoilWeaponBuff = new NegativeRecoilWeaponBuff(prop.gunBuffName, prop.gunMaxLevel, prop.gunDuration, prop.gunAddtional, EquipmentSource, EquipmentSource);
@@ -262,7 +235,7 @@ namespace NegativeRecoil
                     negativeRecoilWeaponBuff.AddLevel(1);
                 }
 
-                NegativeRecoilPawnBuff negativeRecoilPawnBuff = weaponBuffManager.FindBuff(prop.pawnBuffName) as NegativeRecoilPawnBuff;
+                NegativeRecoilPawnBuff negativeRecoilPawnBuff = weaponBuffManager.FindWithName(prop.pawnBuffName) as NegativeRecoilPawnBuff;
                 if (negativeRecoilPawnBuff == null)
                 {
                     negativeRecoilPawnBuff = new NegativeRecoilPawnBuff(prop.pawnBuffName, prop.pawnMaxLevel, prop.pawnDuration, prop.pawnAddtional, EquipmentSource, CasterPawn);
@@ -306,7 +279,7 @@ namespace NegativeRecoil
                         if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
                             CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
-                            NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
+                            NegativeRecoilPawnBuff buff = compBuffManager.FindWithName("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
                             if (buff != null)
                             {
                                 float additionalVal = Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel);
@@ -336,7 +309,7 @@ namespace NegativeRecoil
                         if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
                             CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
-                            NegativeRecoilPawnBuff buff = compBuffManager.FindBuff("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
+                            NegativeRecoilPawnBuff buff = compBuffManager.FindWithName("NegativeRecoilPawn") as NegativeRecoilPawnBuff;
                             if (buff != null)
                             {
                                 string text = "StatReport_AdditionalPawnAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalPawnAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
@@ -376,7 +349,7 @@ namespace NegativeRecoil
                     {
                         ThingWithComps weaponThing = req.Thing as ThingWithComps;
                         CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
-                        NegativeRecoilWeaponBuff buff = buffComp.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
+                        NegativeRecoilWeaponBuff buff = buffComp.FindWithName("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
                         if(buff!=null)
                         {
                             float additionalVal = Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel);
@@ -403,7 +376,7 @@ namespace NegativeRecoil
                     {
                         ThingWithComps weaponThing = req.Thing as ThingWithComps;
                         CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
-                        NegativeRecoilWeaponBuff buff = buffComp.FindBuff("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
+                        NegativeRecoilWeaponBuff buff = buffComp.FindWithName("NegativeRecoilWeapon") as NegativeRecoilWeaponBuff;
                         if (buff != null)
                         {
                             string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.additionalGunAccuracy, buff.CurrentLevel) - 1).ToStringPercent();
