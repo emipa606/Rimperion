@@ -11,13 +11,11 @@
 </p>
 
 <p align="center">
- This Mod Adds New Guns with Negative Recoil
+ Add Borderlands Hyperion's Weapon
 </p>
 
 ---------------------------------------
-**Before use** this mod need [RimBuff](https://github.com/jhjjgu0115/RimBuff)
 
-#### Add Borderlands Hyperion's Weapon
 #### Feature
 "Bringing perfection to the field."  
 All Hyperion weapons get more accurate each time it fires.  
@@ -25,5 +23,10 @@ Negative Recoil,a special Recoil control technology only for Hyperion makers, gi
 
 #### Negative Recoil
 - Negative Recoil increases the accuracy rate every time a gun is fired.
-- If you stop shooting, it will be restored rapidly.
+- If you stop shooting, it will be restored rapidly.  
+  
+
+
+
+**Before use** this mod need [RimBuff](https://github.com/jhjjgu0115/RimBuff)
 
