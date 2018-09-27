@@ -11,6 +11,6 @@
 </p>
 
 <p align="center">
- This Mod Adds Buff Components to Thing. It makes Stat or Function dynamic.
+ This Mod Adds New Guns with Negative Recoil
 </p>
 
