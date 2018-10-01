@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 모든 값을 지정하거나 아래와 같이 '*'를 사용하여 빌드 번호 및 수정 번호를
 // 기본값으로 할 수 있습니다.
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2018.09.27.30")]
-[assembly: AssemblyFileVersion("2018.09.27.30")]
+[assembly: AssemblyVersion("2018.10.01.33")]
+[assembly: AssemblyFileVersion("2018.10.01.33")]

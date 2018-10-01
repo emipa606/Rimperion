@@ -23,9 +23,10 @@ namespace NegativeRecoil
 
         #region Constructors
         public NegativeRecoilWeaponBuff() { }
-        public NegativeRecoilWeaponBuff(string buffName,int maxLevel,float duration,float additional,ThingWithComps caster,ThingWithComps target)
+        public NegativeRecoilWeaponBuff(string uniqueName,int maxLevel,float duration,float additional,ThingWithComps caster,ThingWithComps target)
         {
-            this.buffName = buffName;
+            this.uniqueName = uniqueName;
+            uniqueID = uniqueName + GetHashCode();
             this.maxLevel = maxLevel;
             this.duration = GenTicks.SecondsToTicks(duration);
             this.additionalGunAccuracy = additional;
@@ -70,6 +71,16 @@ namespace NegativeRecoil
         {
         }
 
+        public override void OnDurationExpire()
+        {
+            currentLevel -= 1;
+            OnRefresh();
+            if (currentLevel <= 0)
+            {
+                owner.RemoveBuff(this);
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -85,15 +96,7 @@ namespace NegativeRecoil
         #endregion
 
         #region protected Methods
-        protected override void OnDurationExpire()
-        {
-            currentLevel -= 1;
-            OnRefresh();
-            if (currentLevel <= 0)
-            {
-                owner.RemoveBuff(this);
-            }
-        }
+
         #endregion
 
     }
@@ -108,10 +111,10 @@ namespace NegativeRecoil
         {
             uniqueID = "needBuffName" + GetHashCode();
         }
-        public NegativeRecoilPawnBuff(string buffName, int maxLevel, float duration, float additional,ThingWithComps caster, ThingWithComps target)
+        public NegativeRecoilPawnBuff(string uniqueName, int maxLevel, float duration, float additional,ThingWithComps caster, ThingWithComps target)
         {
-            this.buffName = buffName;
-            uniqueID = buffName + GetHashCode();
+            this.uniqueName = uniqueName;
+            uniqueID = uniqueName + GetHashCode();
             this.maxLevel = maxLevel;
             this.duration = GenTicks.SecondsToTicks(duration);
             this.additionalPawnAccuracy = additional;
@@ -155,6 +158,16 @@ namespace NegativeRecoil
         {
         }
 
+        public override void OnDurationExpire()
+        {
+            currentLevel -= 1;
+            OnRefresh();
+            if (currentLevel <= 0)
+            {
+                owner.RemoveBuff(this);
+            }
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -171,15 +184,6 @@ namespace NegativeRecoil
 
         #region protected Methods
 
-        protected override void OnDurationExpire()
-        {
-            currentLevel -= 1;
-            OnRefresh();
-            if (currentLevel <= 0)
-            {
-                owner.RemoveBuff(this);
-            }
-        }
         #endregion
 
     }
