@@ -8,8 +8,6 @@
 		</comps>
 	</ThingDef>
 
-
-
 	<!--    HG       -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_HG</defName>
@@ -48,16 +46,9 @@
 		</costList>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>5</gunMaxLevel>
-				<gunDuration>3</gunDuration>
-				<gunAddtional>1.1</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>3</pawnMaxLevel>
-				<pawnDuration>3</pawnDuration>
-				<pawnAddtional>1.1</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
+				<weaponBuffDef>NegativeRecoil_W_HG</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_HG</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_HG</defaultProjectile>
@@ -137,16 +128,9 @@
 		</costList>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>				
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>12</gunMaxLevel>
-				<gunDuration>3</gunDuration>
-				<gunAddtional>1.04</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>9</pawnMaxLevel>
-				<pawnDuration>3</pawnDuration>
-				<pawnAddtional>1.04</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>		
+				<weaponBuffDef>NegativeRecoil_W_SMG</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_SMG</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_SMG</defaultProjectile>
@@ -231,16 +215,9 @@
 		</costList>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>12</gunMaxLevel>
-				<gunDuration>3</gunDuration>
-				<gunAddtional>1.04</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>9</pawnMaxLevel>
-				<pawnDuration>3</pawnDuration>
-				<pawnAddtional>1.04</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>		
+				<weaponBuffDef>NegativeRecoil_W_AR</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_AR</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_AR</defaultProjectile>
@@ -325,16 +302,9 @@
 		</costList>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>4</gunMaxLevel>
-				<gunDuration>6</gunDuration>
-				<gunAddtional>1.15</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>3</pawnMaxLevel>
-				<pawnDuration>6</pawnDuration>
-				<pawnAddtional>1.5</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
+				<weaponBuffDef>NegativeRecoil_W_RF</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_RF</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_RF</defaultProjectile>
@@ -419,16 +389,9 @@
 		</recipeMaker>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>4</gunMaxLevel>
-				<gunDuration>3</gunDuration>
-				<gunAddtional>1.15</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>3</pawnMaxLevel>
-				<pawnDuration>3</pawnDuration>
-				<pawnAddtional>1.25</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
+				<weaponBuffDef>NegativeRecoil_W_SG</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_SG</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_SG</defaultProjectile>
@@ -514,16 +477,9 @@
 		</costList>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_Shoot_NegativeRecoil</verbClass>
-				<gunBuffName>NegativeRecoilWeapon</gunBuffName>
-				<gunMaxLevel>24</gunMaxLevel>
-				<gunDuration>3</gunDuration>
-				<gunAddtional>1.02</gunAddtional>
-
-				<pawnBuffName>NegativeRecoilPawn</pawnBuffName>
-				<pawnMaxLevel>12</pawnMaxLevel>
-				<pawnDuration>3</pawnDuration>
-				<pawnAddtional>1.06</pawnAddtional>	
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
+				<weaponBuffDef>NegativeRecoil_W_LMG</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_LMG</pawnBuffDef>
 
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_LMG</defaultProjectile>
