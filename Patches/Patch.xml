@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!--NegativeRecoil Add Patch-->
-	<Operation Class="PatchOperationAdd">
-		<xpath>*/ThingDef[defName="Human"]</xpath>
-		<value>
-			<comps>
-				<li>
-					<compClass>RimBuff.CompBuffManager</compClass>
-				</li>
-			</comps>
-		</value>
-	</Operation>	
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/StatDef[defName="AccuracyShort"]</xpath>
 		<value>
@@ -29,7 +18,6 @@
 			</parts>
 		</value>
 	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/StatDef[defName="AccuracyLong"]</xpath>
 		<value>
@@ -39,7 +27,6 @@
 			</parts>
 		</value>
 	</Operation>	
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>*/StatDef[defName="ShootingAccuracyPawn"]</xpath>
 		<value>
