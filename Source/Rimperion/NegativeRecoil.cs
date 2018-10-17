@@ -21,7 +21,8 @@ namespace NegativeRecoil
 
         #endregion
 
-        #region Constructors        
+        #region Constructors               
+        public NegativeRecoilBuff() : base() { }
         public NegativeRecoilBuff(NegativeRecoilBuffDef buffDef, ThingWithComps caster):base (buffDef,caster)
         {
             additionalAccuracy = buffDef.additionalAccuracy;
