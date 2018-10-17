@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://github.com/jhjjgu0115/Rimperion/releases">
-    <img src="https://img.shields.io/badge/release-v0.1-0066cc.svg?style=flat" alt="v0.1" />
+    <img src="https://img.shields.io/badge/release-v0.2-0066cc.svg?style=flat" alt="v0.2" />
   </a>
   <a href="https://github.com/jhjjgu0115/Rimperion/wiki">
     <img src="https://img.shields.io/badge/documentation-Wiki-cc0303.svg?style=flat" alt="Documentation" />
