@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
+	<!--
+	<BuffDef>
+		<buffClass></buffClass>
+		<defName>unique name</defName>
+		<label>expose name</label>
+		<description>explain this buff</description>
+		<spellLevel>100</spellLevel>
+		<maxOverlapLevel>5</maxOverlapLevel>	
+		<canDespell>false</canDespell>	
+		<duration>1</duration>
+		<repeatCycle>1</repeatCycle>	
+		<tagList>
+			<li>NegativeRecoil</li>
+		</tagList>
+		<isVisualze>true</isVisualze>
+	</BuffDef>
+	-->
 	<!--
 	<NegativeRecoil.NegativeRecoilBuffDef>
 	<defName>NegativeRecoil_W_ + gunName</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>6 X bustShotCount </maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>(warmupTime + reloadTime)X 1.5</duration>
@@ -26,7 +42,7 @@
 	<!--    HG    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_HG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>6</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>1.95</duration> 
@@ -39,7 +55,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_HG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>3</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>1.95</duration>
@@ -53,7 +69,7 @@
 	<!--    SMG    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_SMG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>15</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.5</duration>
@@ -66,7 +82,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_SMG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>3</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.5</duration>
@@ -79,7 +95,7 @@
 	<!--    AR    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_AR</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>12</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.5</duration>
@@ -92,7 +108,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_AR</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>9</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.5</duration>
@@ -106,7 +122,7 @@
 	<!--    RF    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_RF</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>3</maxOverlapLevel>
 	<canDespell>false</canDespell>
 	<duration>5.5</duration>
@@ -119,7 +135,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_RF</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>3</maxOverlapLevel>
 	<canDespell>false</canDespell>
 	<duration>5.5</duration>
@@ -133,7 +149,7 @@
 	<!--    SG    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_SG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>4</maxOverlapLevel>
 	<canDespell>false</canDespell>
 	<duration>3</duration>
@@ -146,7 +162,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_SG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>3</maxOverlapLevel>
 	<canDespell>false</canDespell>
 	<duration>3</duration>
@@ -160,7 +176,7 @@
 	<!--    LMG    -->
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_W_LMG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>24</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.4</duration>
@@ -173,7 +189,7 @@
 	
 	<NegativeRecoil.NegativeRecoilBuffDef ParentName="NegativeRecoilBuff">
 	<defName>NegativeRecoil_P_LMG</defName>
-	<maxSpellLevel>1</maxSpellLevel>
+	<spellLevel>1</spellLevel>
 	<maxOverlapLevel>12</maxOverlapLevel>	
 	<canDespell>false</canDespell>	
 	<duration>3.4</duration>
