@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- HG -->
+
+  <Gun_Rimperion_HG.label>Hyperion Pistol</Gun_Rimperion_HG.label>
+  <Gun_Rimperion_HG.description>"Vision" the basic pistol of Hyperion.Hold gently in your hands and shoot.</Gun_Rimperion_HG.description>
+  <Gun_Rimperion_HG.tools.0.label>grip</Gun_Rimperion_HG.tools.0.label>
+  <Gun_Rimperion_HG.tools.1.label>barrel</Gun_Rimperion_HG.tools.1.label>
+
+  <Bullet_Rimperion_HG.label>Rimperion_HG_Bullet</Bullet_Rimperion_HG.label>
+
+
+  <!-- SMG -->
+
+  <Gun_Rimperion_SMG.label>Hyperion SMG</Gun_Rimperion_SMG.label>
+  <Gun_Rimperion_SMG.description>"Backburner",SMG with Hyperion negative recoil. Feel the vividness of perfection on the spot.</Gun_Rimperion_SMG.description>
+  <Gun_Rimperion_SMG.tools.0.label>grip</Gun_Rimperion_SMG.tools.0.label>
+  <Gun_Rimperion_SMG.tools.1.label>barrel</Gun_Rimperion_SMG.tools.1.label>
+
+  <Bullet_Rimperion_SMG.label>Rimperion_SMG_Bullet</Bullet_Rimperion_SMG.label>
+
+
+  <!-- RF -->
+
+  <Gun_Rimperion_RF.label>Hyperion Rifle</Gun_Rimperion_RF.label>
+  <Gun_Rimperion_RF.description>"Transaction", RF with Hyperion negative recoil.Best Sniper, Best Rifle.</Gun_Rimperion_RF.description>
+  <Gun_Rimperion_RF.tools.0.label>stock</Gun_Rimperion_RF.tools.0.label>
+  <Gun_Rimperion_RF.tools.1.label>barrel</Gun_Rimperion_RF.tools.1.label>
+
+  <Bullet_Rimperion_RF.label>Rimperion_RF_Bullet</Bullet_Rimperion_RF.label>
+
+
+  <!-- SG -->
+
+  <Gun_Rimperion_SG.label>Hyperion ShotGun</Gun_Rimperion_SG.label>
+  <Gun_Rimperion_SG.description>"Crowdsourcing", SG with Hyperion negative recoil.It's as hot as Hansom Jack.</Gun_Rimperion_SG.description>
+  <Gun_Rimperion_SG.tools.0.label>stock</Gun_Rimperion_SG.tools.0.label>
+  <Gun_Rimperion_SG.tools.1.label>barrel</Gun_Rimperion_SG.tools.1.label>
+
+  <Bullet_Rimperion_SG.label>Rimperion_SG_Bullet</Bullet_Rimperion_SG.label>
+
+
+  <!-- AR -->
+
+  <Gun_Rimperion_AR.label>Hyperion Assult Rifle</Gun_Rimperion_AR.label>
+  <Gun_Rimperion_AR.description>"Negotiation", AR with Hyperion negative recoil.This product can only be met at RimWorld.</Gun_Rimperion_AR.description>
+  <Gun_Rimperion_AR.tools.0.label>stock</Gun_Rimperion_AR.tools.0.label>
+  <Gun_Rimperion_AR.tools.1.label>barrel</Gun_Rimperion_AR.tools.1.label>
+
+  <Bullet_Rimperion_AR.label>Rimperion_AR_Bullet</Bullet_Rimperion_AR.label>
+
+
+  <!-- LMG -->
+
+  <Gun_Rimperion_LMG.label>Hyperion LMG</Gun_Rimperion_LMG.label>
+  <Gun_Rimperion_LMG.description>"Guarantee",LMG with Hyperion negative recoil.A masterpiece.</Gun_Rimperion_LMG.description>
+  <Gun_Rimperion_LMG.tools.0.label>stock</Gun_Rimperion_LMG.tools.0.label>
+  <Gun_Rimperion_LMG.tools.1.label>barrel</Gun_Rimperion_LMG.tools.1.label>
+
+  <Bullet_Rimperion_LMG.label>Rimperion_LMG_Bullet</Bullet_Rimperion_LMG.label>
+
+
+</LanguageData>

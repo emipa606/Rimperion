@@ -11,8 +11,8 @@
 	<!--    HG       -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_HG</defName>
-		<label>Vision</label>
-		<description>It's the basic pistol of Hyperion.Hold gently in your hands and shoot.</description>
+		<label>Hyperion Pistol</label>
+		<description>"Vision" the basic pistol of Hyperion.Hold gently in your hands and shoot.</description>
 		<graphicData>
 			<texPath>Things/Weapon/Rimperion_HG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -38,7 +38,7 @@
 			<AccuracyShort>0.40</AccuracyShort>
 			<AccuracyMedium>0.30</AccuracyMedium>
 			<AccuracyLong>0.20</AccuracyLong>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Plasteel>30</Plasteel>
@@ -49,7 +49,6 @@
 				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
 				<weaponBuffDef>NegativeRecoil_W_HG</weaponBuffDef>
 				<pawnBuffDef>NegativeRecoil_P_HG</pawnBuffDef>
-
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Rimperion_HG</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
@@ -97,8 +96,8 @@
 	<!--    SMG      -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_SMG</defName>
-		<label>Backburner</label>
-		<description>SMG with Hyperion negative recoil. Feel the vividness of perfection on the spot.</description>
+		<label>Hyperion SMG</label>
+		<description>"Backburner",SMG with Hyperion negative recoil. Feel the vividness of perfection on the spot.</description>
 		<graphicData>
 			<texPath>Things/Weapon/Rimperion_SMG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -181,98 +180,11 @@
 		</projectile>
 	</ThingDef>
 
-	<!--    AR       -->
-	<ThingDef ParentName="Rimperion_Weapon">
-		<defName>Gun_Rimperion_AR</defName>
-		<label>Negotiation</label>
-		<description>AR with Hyperion negative recoil.This product can only be met at RimWorld.</description>
-		<graphicData>
-			<texPath>Things/Weapon/Rimperion_AR</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<soundInteract>Interact_ChargeLance</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
-		<statBases>
-			<WorkToMake>40000</WorkToMake>
-			<Mass>3.5</Mass>
-			<AccuracyTouch>0.60</AccuracyTouch>
-			<AccuracyShort>0.40</AccuracyShort>
-			<AccuracyMedium>0.35</AccuracyMedium>
-			<AccuracyLong>0.25</AccuracyLong>
-			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<Plasteel>60</Plasteel>
-			<ComponentIndustrial>8</ComponentIndustrial>
-		</costList>
-		<verbs>
-			<li Class="NegativeRecoil.NegativeRecoilProperties">
-				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>		
-				<weaponBuffDef>NegativeRecoil_W_AR</weaponBuffDef>
-				<pawnBuffDef>NegativeRecoil_P_AR</pawnBuffDef>
-
-				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Bullet_Rimperion_AR</defaultProjectile>
-				<warmupTime>1.0</warmupTime>
-				<range>30.9</range>
-				<burstShotCount>3</burstShotCount>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<soundCast>ChargeLance_Fire</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>9</muzzleFlashScale>
-			</li>
-		</verbs>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
-		<tools>
-			<li>
-				<label>stock</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>9</power>
-				<cooldownTime>2</cooldownTime>
-			</li>
-			<li>
-				<label>barrel</label>
-				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
-				</capacities>
-				<power>9</power>
-				<cooldownTime>2</cooldownTime>
-			</li>
-		</tools>
-	</ThingDef>
-	<ThingDef ParentName="BaseBullet">
-		<defName>Bullet_Rimperion_AR</defName>
-		<label>Rimperion_AR_Bullet</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Small</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>11</damageAmountBase>
-			<speed>70</speed>
-		</projectile>
-	</ThingDef>
-
 	<!--    RF    -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_RF</defName>
-		<label>Transaction</label>
-		<description>RF with Hyperion negative recoil.Best Sniper, Best Rifle.</description>
+		<label>Hyperion Rifle</label>
+		<description>"Transaction", RF with Hyperion negative recoil.Best Sniper, Best Rifle.</description>
 		<graphicData>
 			<texPath>Things/Weapon/Rimperion_RF</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -358,8 +270,8 @@
 	<!--    SG       -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_SG</defName>
-		<label>Crowdsourcing</label>
-		<description>SG with Hyperion negative recoil.It's as hot as Hansom Jack.</description>
+		<label>Hyperion ShotGun</label>
+		<description>"Crowdsourcing", SG with Hyperion negative recoil.It's as hot as Hansom Jack.</description>
 		<graphicData>
 			<texPath>Things/Weapon/Rimperion_SG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -441,13 +353,101 @@
 			<speed>55</speed>
 		</projectile>
 	</ThingDef>
+	
+	
+	
+	<!--    AR       -->
+	<ThingDef ParentName="Rimperion_Weapon">
+		<defName>Gun_Rimperion_AR</defName>
+		<label>Hyperion Assult Rifle</label>
+		<description>"Negotiation", AR with Hyperion negative recoil.This product can only be met at RimWorld.</description>
+		<graphicData>
+			<texPath>Things/Weapon/Rimperion_AR</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_ChargeLance</soundInteract>
+		<recipeMaker>
+			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+			<recipeUsers Inherit="False">
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>40000</WorkToMake>
+			<Mass>3.5</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.40</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.25</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>60</Plasteel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</costList>
+		<verbs>
+			<li Class="NegativeRecoil.NegativeRecoilProperties">
+				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>		
+				<weaponBuffDef>NegativeRecoil_W_AR</weaponBuffDef>
+				<pawnBuffDef>NegativeRecoil_P_AR</pawnBuffDef>
 
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_Rimperion_AR</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>30.9</range>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>ChargeLance_Fire</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>NegativeRecoil</li>
+			<li>SpacerGun</li>
+		</weaponTags>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_Rimperion_AR</defName>
+		<label>Rimperion_AR_Bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<speed>70</speed>
+		</projectile>
+	</ThingDef>
 
 	<!--    LMG       -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_LMG</defName>
-		<label>Guarantee</label>
-		<description>LMG with Hyperion negative recoil.A masterpiece.</description>
+		<label>Hyperion LMG</label>
+		<description>"Guarantee",LMG with Hyperion negative recoil.A masterpiece.</description>
 		<graphicData>
 			<texPath>Things/Weapon/Rimperion_LMG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -530,4 +530,5 @@
 			<speed>46</speed>
 		</projectile>
 	</ThingDef>
+	
 </Defs>

@@ -2,15 +2,15 @@
 <Defs>
 
 	<ResearchTabDef>
-		<defName>Hyperion</defName>
-		<label>Hyperion</label>
+		<defName>SpaceTech</defName>
+		<label>Space Tech</label>
 	</ResearchTabDef>
 
 	<ResearchProjectDef>
 		<defName>NegativeRecoil</defName>
 		<label>NegativeRecoil</label>
 		<description>To control recoil by utilizing energy generated at gun launch.</description>
-		<tab>Hyperion</tab>
+		<tab>SpaceTech</tab>
 		<baseCost>3000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<prerequisites>

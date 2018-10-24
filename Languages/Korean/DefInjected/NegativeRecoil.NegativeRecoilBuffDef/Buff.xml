@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- HG -->
+
+  <NegativeRecoil_W_HG.label>Negative Recoil</NegativeRecoil_W_HG.label>
+  <NegativeRecoil_W_HG.description>All Shooting Accuracy has increased.</NegativeRecoil_W_HG.description>
+
+  <NegativeRecoil_P_HG.label>Negative Recoil</NegativeRecoil_P_HG.label>
+  <NegativeRecoil_P_HG.description>All Shooting Accuracy has increased.</NegativeRecoil_P_HG.description>
+
+
+  <!-- SMG -->
+
+  <NegativeRecoil_W_SMG.label>Negative Recoil</NegativeRecoil_W_SMG.label>
+  <NegativeRecoil_W_SMG.description>All Shooting Accuracy has increased.</NegativeRecoil_W_SMG.description>
+
+  <NegativeRecoil_P_SMG.label>Negative Recoil</NegativeRecoil_P_SMG.label>
+  <NegativeRecoil_P_SMG.description>All Shooting Accuracy has increased.</NegativeRecoil_P_SMG.description>
+
+
+  <!-- AR -->
+
+  <NegativeRecoil_W_AR.label>Negative Recoil</NegativeRecoil_W_AR.label>
+  <NegativeRecoil_W_AR.description>All Shooting Accuracy has increased.</NegativeRecoil_W_AR.description>
+
+  <NegativeRecoil_P_AR.label>Negative Recoil</NegativeRecoil_P_AR.label>
+  <NegativeRecoil_P_AR.description>All Shooting Accuracy has increased.</NegativeRecoil_P_AR.description>
+
+
+  <!-- RF -->
+
+  <NegativeRecoil_W_RF.label>Negative Recoil</NegativeRecoil_W_RF.label>
+  <NegativeRecoil_W_RF.description>All Shooting Accuracy has increased.</NegativeRecoil_W_RF.description>
+
+  <NegativeRecoil_P_RF.label>Negative Recoil</NegativeRecoil_P_RF.label>
+  <NegativeRecoil_P_RF.description>All Shooting Accuracy has increased.</NegativeRecoil_P_RF.description>
+
+
+  <!-- SG -->
+
+  <NegativeRecoil_W_SG.label>Negative Recoil</NegativeRecoil_W_SG.label>
+  <NegativeRecoil_W_SG.description>All Shooting Accuracy has increased.</NegativeRecoil_W_SG.description>
+
+  <NegativeRecoil_P_SG.label>Negative Recoil</NegativeRecoil_P_SG.label>
+  <NegativeRecoil_P_SG.description>All Shooting Accuracy has increased.</NegativeRecoil_P_SG.description>
+
+
+  <!-- LMG -->
+
+  <NegativeRecoil_W_LMG.label>Negative Recoil</NegativeRecoil_W_LMG.label>
+  <NegativeRecoil_W_LMG.description>All Shooting Accuracy has increased.</NegativeRecoil_W_LMG.description>
+
+  <NegativeRecoil_P_LMG.label>Negative Recoil</NegativeRecoil_P_LMG.label>
+  <NegativeRecoil_P_LMG.description>All Shooting Accuracy has increased.</NegativeRecoil_P_LMG.description>
+
+
+</LanguageData>
