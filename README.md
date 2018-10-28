@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/jhjjgu0115/Rimperion/blob/master/About/Preview.png" alt="JecsTools" />
+    <img src="https://github.com/jhjjgu0115/Rimperion/blob/master/About/Preview.png" />
 </p>
 <p align="center">
   <a href="https://github.com/jhjjgu0115/Rimperion/releases">
