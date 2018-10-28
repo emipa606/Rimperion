@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<ThingDef Name="Rimperion_Weapon" Abstract="True" ParentName="BaseHumanMakeableGun">
+	<ThingDef Name="Rimperion_Weapon" Abstract="True" ParentName="BaseWeapon">
+		<techLevel>Spacer</techLevel>
+		<smeltable>true</smeltable>
+		<thingCategories>
+			<li>RimperionWeapons</li>
+		</thingCategories>
+		<weaponTags>
+			<li>NegativeRecoil</li>
+			<li>SpacerGun</li>
+		</weaponTags>
+		<inspectorTabs>
+			<li>ITab_Art</li>
+		</inspectorTabs>
+		<generateCommonality>0.05</generateCommonality>
 		<comps>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>			
 			<li>
 				<compClass>RimBuff.CompBuffManager</compClass>
 			</li>
 		</comps>
+		<recipeMaker>
+			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers Inherit="False">
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+		</recipeMaker>
 	</ThingDef>
 
 	<!--    HG       -->
@@ -18,19 +53,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
 		<statBases>
 			<WorkToMake>5000</WorkToMake>
 			<Mass>1.2</Mass>
@@ -53,7 +75,7 @@
 				<defaultProjectile>Bullet_Rimperion_HG</defaultProjectile>
 				<warmupTime>0.3</warmupTime>
 				<range>25.9</range>
-				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCast>Rimperion_HG_Fire</soundCast>
 				<soundCastTail>GunTail_Light</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
@@ -103,15 +125,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_SMG</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
 		<statBases>
 			<WorkToMake>24000</WorkToMake>
 			<Mass>3.5</Mass>
@@ -137,7 +150,7 @@
 				<range>28.9</range>
 				<burstShotCount>3</burstShotCount>
 				<ticksBetweenBurstShots>11</ticksBetweenBurstShots>
-				<soundCast>Shot_ChargeBlaster</soundCast>
+				<soundCast>Rimperion_HG_Fire</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
@@ -161,10 +174,6 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
 	</ThingDef>
 	<ThingDef ParentName="BaseBullet">
 		<defName>Bullet_Rimperion_SMG</defName>
@@ -190,15 +199,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_ChargeLance</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
 		<statBases>
 			<WorkToMake>45000</WorkToMake>
 			<Mass>4</Mass>
@@ -247,8 +247,6 @@
 			</li>
 		</tools>
 		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
 			<li>SniperRifle</li>
 		</weaponTags>
 	</ThingDef>
@@ -290,15 +288,6 @@
 			<Plasteel>60</Plasteel>
 			<ComponentIndustrial>4</ComponentIndustrial>
 		</costList>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
 		<verbs>
 			<li Class="NegativeRecoil.NegativeRecoilProperties">
 				<verbClass>NegativeRecoil.Verb_NegativeRecoil_Shoot</verbClass>
@@ -309,7 +298,7 @@
 				<defaultProjectile>Bullet_Rimperion_SG</defaultProjectile>
 				<warmupTime>0.9</warmupTime>
 				<range>20.9</range>				
-				<soundCast>Shot_Shotgun</soundCast>
+				<soundCast>Rimperion_SG_Fire</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
@@ -333,10 +322,6 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
 	</ThingDef>
 	<ThingDef ParentName="BaseBullet">
 		<defName>Bullet_Rimperion_SG</defName>
@@ -353,9 +338,7 @@
 			<speed>55</speed>
 		</projectile>
 	</ThingDef>
-	
-	
-	
+		
 	<!--    AR       -->
 	<ThingDef ParentName="Rimperion_Weapon">
 		<defName>Gun_Rimperion_AR</defName>
@@ -366,15 +349,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_ChargeLance</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
 		<statBases>
 			<WorkToMake>40000</WorkToMake>
 			<Mass>3.5</Mass>
@@ -400,15 +374,11 @@
 				<range>30.9</range>
 				<burstShotCount>3</burstShotCount>
 				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-				<soundCast>ChargeLance_Fire</soundCast>
+				<soundCast>Rimperion_AR_Fire</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
 		</verbs>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -453,15 +423,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_ChargeLance</soundInteract>
-		<recipeMaker>
-			<researchPrerequisite>NegativeRecoil</researchPrerequisite>
-			<skillRequirements>
-				<Crafting>8</Crafting>
-			</skillRequirements>
-			<recipeUsers Inherit="False">
-				<li>FabricationBench</li>
-			</recipeUsers>
-		</recipeMaker>
 		<statBases>
 			<WorkToMake>34000</WorkToMake>
 			<Mass>8.5</Mass>
@@ -487,15 +448,11 @@
 				<range>37.9</range>
 				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 				<burstShotCount>6</burstShotCount>
-				<soundCast>ChargeLance_Fire</soundCast>
+				<soundCast>Rimperion_SG_Fire</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 			</li>
 		</verbs>
-		<weaponTags>
-			<li>NegativeRecoil</li>
-			<li>SpacerGun</li>
-		</weaponTags>
 		<tools>
 			<li>
 				<label>stock</label>
@@ -530,5 +487,4 @@
 			<speed>46</speed>
 		</projectile>
 	</ThingDef>
-	
 </Defs>
