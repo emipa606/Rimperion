@@ -40,6 +40,10 @@ namespace NegativeRecoil
         #endregion
 
         #region Public Methods
+        public override void OnCreate()
+        {
+            base.OnCreate();
+        }
         public override void AddOverlapLevel(int level)
         {
             base.AddOverlapLevel(level);
@@ -56,17 +60,6 @@ namespace NegativeRecoil
                 yield return null;
             }
         }
-        /*
-        public override void Tick(int interval)
-        {
-            if (duration <= currentDuration)
-            {
-                currentDuration = 0;
-                OnDurationExpire();
-            }
-            currentDuration += interval;
-        }
-        */
         public override void OnRefresh()
         {
             currentDuration = 0;
@@ -156,7 +149,7 @@ namespace NegativeRecoil
                 if (req.HasThing)
                 {
                     Pawn pawn = req.Thing as Pawn;
-                    if(pawn.equipment.Primary!=null)
+                    if(pawn!=null && pawn.equipment.Primary!=null && pawn.equipment.Primary.def.weaponTags!=null)
                     {
                         if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
@@ -189,7 +182,7 @@ namespace NegativeRecoil
                 if(req.HasThing)
                 {
                     Pawn pawn = req.Thing as Pawn;
-                    if (pawn.equipment.Primary != null)
+                    if (pawn != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.weaponTags != null)
                     {
                         if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
@@ -232,20 +225,26 @@ namespace NegativeRecoil
             {
                 if (req.HasThing)
                 {
-                    if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
+                    if(req.Thing.def.weaponTags!=null)
                     {
-                        ThingWithComps weaponThing = req.Thing as ThingWithComps;
-                        CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
-                        if(buffComp!=null)
+                        if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
                         {
-                            NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
-                            if (buff != null)
+                            ThingWithComps weaponThing = req.Thing as ThingWithComps;
+                            if (weaponThing != null)
                             {
-                                float additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
-                                val += (additionalVal - 1);
+                                CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
+                                if (buffComp != null)
+                                {
+                                    NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
+                                    if (buff != null)
+                                    {
+                                        float additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
+                                        val += (additionalVal - 1);
+                                    }
+                                }
                             }
-                        }                        
-                    }
+                        }
+                    }                    
                 }
             }
             catch(Exception ee)
@@ -262,25 +261,32 @@ namespace NegativeRecoil
             {
                 try
                 {
-                    if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
+                    if (req.Thing.def.weaponTags != null)
                     {
-                        ThingWithComps weaponThing = req.Thing as ThingWithComps;
-                        CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
-                        if (buffComp != null)
+                        if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
                         {
-                            NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
-                            if (buff != null)
+                            ThingWithComps weaponThing = req.Thing as ThingWithComps;
+                            if (weaponThing != null)
                             {
-                                string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel) - 1).ToStringPercent();
-                                return text;
+                                CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
+                                if (buffComp != null)
+                                {
+                                    NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
+                                    if (buff != null)
+                                    {
+                                        string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel) - 1).ToStringPercent();
+                                        return text;
+                                    }
+                                }
                             }
-                        }                            
+
+                        }
                     }
                 }
-                catch(Exception ee)
+                catch (Exception ee)
                 {
-                    Log.Error(parentStat.defName + " - " + req.Thing.ToString() + " ExplanationPart :" +ee.ToString());
-                    
+                    Log.Error(parentStat.defName + " - " + req.Thing.ToString() + " ExplanationPart :" + ee.ToString());
+
                 }
             }
             return string.Empty;
