@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A487D5CC-22D1-49CC-8D6D-E5EF07FA1FEF}</ProjectGuid>
+    <ProjectGuid>{BFA5565F-46E2-4DE4-9931-B13FE82CD28E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rimperion</RootNamespace>
-    <AssemblyName>Rimperion</AssemblyName>
+    <RootNamespace>RimBuff</RootNamespace>
+    <AssemblyName>RimBuff</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -42,20 +42,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HugslibAddon.cs" />
-    <Compile Include="NegativeRecoil.cs" />
+    <Compile Include="Buff.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Def.cs" />
+    <Compile Include="RimBuff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RimBuff\RimBuff.csproj">
-      <Project>{bfa5565f-46e2-4de4-9931-b13fe82cd28e}</Project>
-      <Name>RimBuff</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_StartDate="2000/1/1" />
+      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

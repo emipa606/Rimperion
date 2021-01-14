@@ -30,13 +30,7 @@ namespace NegativeRecoil
         #endregion
 
         #region Properties
-        public float AdditionalAccuracy
-        {
-            get
-            {
-                return additionalAccuracy;
-            }
-        }
+        public float AdditionalAccuracy => additionalAccuracy;
         #endregion
 
         #region Public Methods
@@ -96,7 +90,7 @@ namespace NegativeRecoil
 
         protected override bool TryCastShot()
         {
-            bool result = base.TryCastShot();
+            var result = base.TryCastShot();
             try
             {
                 if (compBuffM == null)
@@ -104,19 +98,17 @@ namespace NegativeRecoil
                     compBuffM = EquipmentSource.GetComp<CompBuffManager>();
                     properties = (NegativeRecoilProperties)verbProps;
                 }
-                NegativeRecoilBuff nRWBuff = compBuffM.FindWithDef(properties.weaponBuffDef) as NegativeRecoilBuff;
-                NegativeRecoilBuff nRPBuff = compBuffM.FindWithDef(properties.pawnBuffDef) as NegativeRecoilBuff;
                 //네거티브 리코일 버프가 없다면
-                if (nRWBuff == null)
+                if (!(compBuffM.FindWithDef(properties.weaponBuffDef) is NegativeRecoilBuff nRWBuff))
                 {
-                    compBuffM.AddBuff(properties.weaponBuffDef,EquipmentSource);
+                    compBuffM.AddBuff(properties.weaponBuffDef, EquipmentSource);
                 }
                 else
                 {
                     nRWBuff.AddOverlapLevel(1);
                 }
 
-                if (nRPBuff == null)
+                if (!(compBuffM.FindWithDef(properties.pawnBuffDef) is NegativeRecoilBuff nRPBuff))
                 {
                     compBuffM.AddBuff(properties.pawnBuffDef, EquipmentSource);
                 }
@@ -146,25 +138,27 @@ namespace NegativeRecoil
         {
             try
             {
-                if (req.HasThing)
+                if (!req.HasThing)
                 {
-                    Pawn pawn = req.Thing as Pawn;
-                    if(pawn!=null && pawn.equipment.Primary!=null && pawn.equipment.Primary.def.weaponTags!=null)
-                    {
-                        if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
-                        {
-                            CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
-                            if(compBuffManager!=null)
-                            {
-                                NegativeRecoilBuff buff = compBuffManager.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) as NegativeRecoilBuff;
-                                if (buff != null)
-                                {
-                                    float additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
-                                    val += (additionalVal - 1);
-                                }
-                            }                            
-                        }
-                    }
+                    return;
+                }
+                if (!(req.Thing is Pawn pawn) || pawn.equipment.Primary == null || pawn.equipment.Primary.def.weaponTags == null)
+                {
+                    return;
+                }
+                if (!pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
+                {
+                    return;
+                }
+                CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
+                if (compBuffManager == null)
+                {
+                    return;
+                }
+                if (compBuffManager.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) is NegativeRecoilBuff buff)
+                {
+                    var additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
+                    val += additionalVal - 1;
                 }
             }
             catch
@@ -179,25 +173,23 @@ namespace NegativeRecoil
         {
             try
             {
-                if(req.HasThing)
+                if (req.HasThing)
                 {
-                    Pawn pawn = req.Thing as Pawn;
-                    if (pawn != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def.weaponTags != null)
+                    if (req.Thing is Pawn pawn && pawn.equipment.Primary != null && pawn.equipment.Primary.def.weaponTags != null)
                     {
                         if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                         {
                             CompBuffManager compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
                             if (compBuffManager != null)
                             {
-                                NegativeRecoilBuff buff = compBuffManager.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) as NegativeRecoilBuff;
-                                if (buff != null)
+                                if (compBuffManager.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) is NegativeRecoilBuff buff)
                                 {
                                     string text = "StatReport_AdditionalPawnAccuracy".Translate() + ": +" + (Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel) - 1).ToStringPercent();
 
                                     return text;
                                 }
-                            }                                
-                        }                            
+                            }
+                        }
                     }
                 }
             }
@@ -223,31 +215,34 @@ namespace NegativeRecoil
         {
             try
             {
-                if (req.HasThing)
+                if (!req.HasThing)
                 {
-                    if(req.Thing.def.weaponTags!=null)
-                    {
-                        if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
-                        {
-                            ThingWithComps weaponThing = req.Thing as ThingWithComps;
-                            if (weaponThing != null)
-                            {
-                                CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
-                                if (buffComp != null)
-                                {
-                                    NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
-                                    if (buff != null)
-                                    {
-                                        float additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
-                                        val += (additionalVal - 1);
-                                    }
-                                }
-                            }
-                        }
-                    }                    
+                    return;
+                }
+                if (req.Thing.def.weaponTags == null)
+                {
+                    return;
+                }
+                if (!req.Thing.def.weaponTags.Contains("NegativeRecoil"))
+                {
+                    return;
+                }
+                if (!(req.Thing is ThingWithComps weaponThing))
+                {
+                    return;
+                }
+                CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
+                if (buffComp == null)
+                {
+                    return;
+                }
+                if (buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) is NegativeRecoilBuff buff)
+                {
+                    var additionalVal = Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel);
+                    val += additionalVal - 1;
                 }
             }
-            catch(Exception ee)
+            catch (Exception ee)
             {
                 if (req.HasThing)
                 {
@@ -265,14 +260,12 @@ namespace NegativeRecoil
                     {
                         if (req.Thing.def.weaponTags.Contains("NegativeRecoil"))
                         {
-                            ThingWithComps weaponThing = req.Thing as ThingWithComps;
-                            if (weaponThing != null)
+                            if (req.Thing is ThingWithComps weaponThing)
                             {
                                 CompBuffManager buffComp = weaponThing.GetComp<CompBuffManager>();
                                 if (buffComp != null)
                                 {
-                                    NegativeRecoilBuff buff = buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) as NegativeRecoilBuff;
-                                    if (buff != null)
+                                    if (buffComp.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) is NegativeRecoilBuff buff)
                                     {
                                         string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" + (Mathf.Pow(buff.AdditionalAccuracy, buff.CurrentOverlapLevel) - 1).ToStringPercent();
                                         return text;

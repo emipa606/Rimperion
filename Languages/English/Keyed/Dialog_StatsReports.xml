@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-	<StatReport_AdditionalWeaponAccuracy>NegativeRecoil</StatReport_AdditionalWeaponAccuracy>
-	<StatReport_AdditionalPawnAccuracy>NegativeRecoil</StatReport_AdditionalPawnAccuracy>
+  <StatReport_AdditionalWeaponAccuracy>NegativeRecoil</StatReport_AdditionalWeaponAccuracy>
+  <StatReport_AdditionalPawnAccuracy>NegativeRecoil</StatReport_AdditionalPawnAccuracy>
 </LanguageData>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/StatDef[defName="AccuracyShort"]</xpath>
+    <value>
+      <parts>
+        <li Class="NegativeRecoil.StatPart_AdditionalWeaponAccuracy">
+        </li>
+      </parts>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/StatDef[defName="AccuracyMedium"]</xpath>
+    <value>
+      <parts>
+        <li Class="NegativeRecoil.StatPart_AdditionalWeaponAccuracy">
+        </li>
+      </parts>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/StatDef[defName="AccuracyLong"]</xpath>
+    <value>
+      <parts>
+        <li Class="NegativeRecoil.StatPart_AdditionalWeaponAccuracy">
+        </li>
+      </parts>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/StatDef[defName="ShootingAccuracyPawn"]</xpath>
+    <value>
+      <parts>
+        <li Class="NegativeRecoil.StatPart_AdditionalPawnAccuracy">
+        </li>
+      </parts>
+    </value>
+  </Operation>
+</Patch>
