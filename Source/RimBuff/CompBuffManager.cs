@@ -1,35 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
-using RimWorld;
-using HarmonyLib;
-using System.Reflection;
+
 namespace RimBuff
 {
     public class CompBuffManager : ThingComp
     {
-        #region Fields
         private List<Buff> buffList;
-        #endregion
 
-        #region Constructors
         public CompBuffManager()
         {
             if (buffList == null)
             {
                 buffList = new List<Buff>();
             }
+
             BuffController.CompList.Add(this);
         }
-        ~CompBuffManager()
-        {
-            BuffController.CompList.Remove(this);
-        }
-        #endregion
 
-        #region Properties
         public List<Buff> BuffList
         {
             get
@@ -38,29 +26,34 @@ namespace RimBuff
                 {
                     buffList = new List<Buff>();
                 }
+
                 return buffList;
             }
         }
-        #endregion
 
-        #region Public Methods
+        ~CompBuffManager()
+        {
+            BuffController.CompList.Remove(this);
+        }
+
         public void Tick()
         {
             try
             {
-                if (buffList.Count > 0)
+                if (buffList.Count <= 0)
                 {
-                    for (var index = 0; index < buffList.Count; index++)
-                    {
-                        buffList[index].TickTest(1).MoveNext();
-                    }
+                    return;
+                }
+
+                foreach (var buff in buffList)
+                {
+                    buff.TickTest(1).MoveNext();
                 }
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
-
         }
 
         //버프 추가
@@ -73,26 +66,29 @@ namespace RimBuff
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
-        public Buff AddBuff(BuffDef def,ThingWithComps caster)
+
+        public void AddBuff(BuffDef def, ThingWithComps caster)
         {
             try
             {
-                var buff = Activator.CreateInstance(def.buffClass,def,caster) as Buff;
+                if (!(Activator.CreateInstance(def.buffClass, def, caster) is Buff buff))
+                {
+                    return;
+                }
+
                 buff.Caster = caster;
                 buffList.Add(buff);
                 buff.Owner = this;
-                return buff;
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
-            return default;
         }
-        
+
 
         //버프 삭제
         public void RemoveBuff(Buff buff)
@@ -101,6 +97,7 @@ namespace RimBuff
             buffList.Remove(buff);
             buff.Owner = null;
         }
+
         public void RemoveWithDefName(string defName)
         {
             try
@@ -109,13 +106,15 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.Def.defName == defName));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause uniqueName is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause uniqueName is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithLabel(string label)
         {
             try
@@ -124,13 +123,15 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.Def.label == label));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause label is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause label is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithUniqueID(string id)
         {
             try
@@ -139,13 +140,15 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.UniqueID == id));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause id is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause id is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithDef(BuffDef def)
         {
             try
@@ -154,13 +157,15 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.Def == def));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause def is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause def is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithTag(string tag)
         {
             try
@@ -169,13 +174,15 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.Def.tagList.Contains(tag)));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause tag is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause tag is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithTags(List<string> tagList)
         {
             try
@@ -184,13 +191,15 @@ namespace RimBuff
                 {
                     RemoveBuff(FindWithTags(tagList));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause tagList is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause tagList is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveWithCaster(ThingWithComps caster)
         {
             try
@@ -199,11 +208,12 @@ namespace RimBuff
                 {
                     RemoveBuff(buffList.Find(buff => buff.Caster == caster));
                 }
-                Log.Error(parent.ToString() + " RemoveBuff - Can't Find Buff: Cause target is Empty ");
+
+                Log.Error(parent + " RemoveBuff - Can't Find Buff: Cause target is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
 
@@ -213,146 +223,156 @@ namespace RimBuff
             {
                 if (defName != null)
                 {
-                    List<Buff> removeList = FindAllWithDefName(defName);
+                    var removeList = FindAllWithDefName(defName);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause buffName is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause buffName is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveAllWithLabel(string label)
         {
             try
             {
                 if (label != null)
                 {
-                    List<Buff> removeList = FindAllWithLabel(label);
+                    var removeList = FindAllWithLabel(label);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause label is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause label is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveAllWithTag(string tag)
         {
             try
             {
                 if (tag != null)
                 {
-                    List<Buff> removeList = FindAllWithTag(tag);
+                    var removeList = FindAllWithTag(tag);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause tag is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause tag is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveAllWithTags(List<string> tagList)
         {
             try
             {
                 if (tagList != null)
                 {
-                    List<Buff> removeList = FindAllWithTags(tagList);
+                    var removeList = FindAllWithTags(tagList);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause tag is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause tag is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveBuffAll(BuffDef def)
         {
             try
             {
                 if (def != null)
                 {
-                    List<Buff> removeList = FindAllWithDef(def);
+                    var removeList = FindAllWithDef(def);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause def is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause def is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
+
         public void RemoveBuffAll(ThingWithComps caster)
         {
             try
             {
                 if (caster != null)
                 {
-                    List<Buff> removeList = FindAllWithCaster(caster);
+                    var removeList = FindAllWithCaster(caster);
                     if (removeList != null)
                     {
-                        for (var index = 0; index < removeList.Count; index++)
+                        foreach (var buff in removeList)
                         {
-                            RemoveBuff(removeList[index]);
+                            RemoveBuff(buff);
                         }
                     }
                 }
-                Log.Error(parent.ToString() + " RemoveBuffAll - Can't Find Buff: Cause caster is Empty ");
+
+                Log.Error(parent + " RemoveBuffAll - Can't Find Buff: Cause caster is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
-
         }
+
         public void RemoveBuffAll()
         {
             try
             {
-
-                for (var index = 0; index < buffList.Count; index++)
+                foreach (var buff in buffList)
                 {
-                    RemoveBuff(buffList[index]);
+                    RemoveBuff(buff);
                 }
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
 
@@ -361,60 +381,74 @@ namespace RimBuff
         {
             return buffList.Contains(buff);
         }
+
         public bool ContainDef(BuffDef def)
         {
             if (FindWithDef(def) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainTag(string tag)
         {
             if (FindWithTag(tag) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainTags(List<string> tagList)
         {
             if (FindWithTags(tagList) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainDefName(string defName)
         {
             if (FindWithName(defName) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainLabel(string label)
         {
             if (FindWithLabel(label) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainUniqueID(string uniqueID)
         {
             if (FindWithUniqueID(uniqueID) != null)
             {
                 return true;
             }
+
             return false;
         }
+
         public bool ContainCaster(ThingWithComps caster)
         {
             if (FindWithCaster(caster) != null)
             {
                 return true;
             }
+
             return false;
         }
 
@@ -427,14 +461,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff == targetBuff);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause buff is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause buff is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithUniqueID(string id)
         {
             try
@@ -443,14 +480,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.UniqueID == id);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause buffName is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause buffName is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithTag(string tag)
         {
             try
@@ -459,29 +499,31 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.Def.tagList.Contains(tag));
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause tag is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause tag is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithTags(List<string> tagList)
         {
             try
             {
                 if (tagList != null)
                 {
-                    
                     Buff result = null;
-                    for(var index=0;index<buffList.Count;index++)
+                    foreach (var buff in buffList)
                     {
-                        for (var innerIndex = 0; innerIndex < tagList.Count; innerIndex++)
+                        foreach (var item in tagList)
                         {
-                            if(buffList[index].Def.tagList.Contains(tagList[innerIndex]))
+                            if (buff.Def.tagList.Contains(item))
                             {
-                                result = buffList[index];
+                                result = buff;
                             }
                             else
                             {
@@ -489,21 +531,26 @@ namespace RimBuff
                                 break;
                             }
                         }
-                        if(result!=null)
+
+                        if (result != null)
                         {
                             return result;
                         }
                     }
-                    return result;
+
+                    return null;
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause tagList is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause tagList is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithName(string defName)
         {
             try
@@ -512,14 +559,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.Def.defName == defName);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause buffName is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause buffName is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithLabel(string label)
         {
             try
@@ -528,14 +578,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.Def.label == label);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause label is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause label is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithDef(BuffDef def)
         {
             try
@@ -544,14 +597,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.Def == def);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause def is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause def is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public Buff FindWithCaster(ThingWithComps caster)
         {
             try
@@ -560,15 +616,17 @@ namespace RimBuff
                 {
                     return buffList.Find(buff => buff.Caster == caster);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause caster is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause caster is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
-        
+
         public List<Buff> FindAllWithDef(BuffDef def)
         {
             try
@@ -577,14 +635,17 @@ namespace RimBuff
                 {
                     return buffList.FindAll(buff => buff.Def == def);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause def is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause def is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public List<Buff> FindAllWithDefName(string defName)
         {
             try
@@ -593,14 +654,17 @@ namespace RimBuff
                 {
                     return buffList.FindAll(buff => buff.Def.defName == defName);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause buffName is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause buffName is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public List<Buff> FindAllWithLabel(string label)
         {
             try
@@ -609,14 +673,17 @@ namespace RimBuff
                 {
                     return buffList.FindAll(buff => buff.Def.label == label);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause label is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause label is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public List<Buff> FindAllWithTag(string tag)
         {
             try
@@ -625,34 +692,36 @@ namespace RimBuff
                 {
                     return buffList.FindAll(buff => buff.Def.tagList.Contains(tag));
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause tag is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause tag is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public List<Buff> FindAllWithTags(List<string> tagList)
         {
             var resultList = new List<Buff>();
             try
             {
-                
                 if (tagList != null)
                 {
                     Buff result = null;
-                    for (var index = 0; index < buffList.Count; index++)
+                    foreach (var buff in buffList)
                     {
-                        for (var innerIndex = 0; innerIndex < tagList.Count; innerIndex++)
+                        foreach (var item in tagList)
                         {
-                            if (buffList[index].Def.tagList.Contains(tagList[innerIndex]))
+                            if (buff.Def.tagList.Contains(item))
                             {
-                                result=buffList[index];
+                                result = buff;
                             }
                             else
                             {
-                                result=null;
+                                result = null;
                                 break;
                             }
                         }
@@ -662,16 +731,20 @@ namespace RimBuff
                             resultList.Add(result);
                         }
                     }
+
                     return resultList;
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause tagList is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause tagList is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return resultList;
         }
+
         public List<Buff> FindAllWithCaster(ThingWithComps caster)
         {
             try
@@ -680,14 +753,17 @@ namespace RimBuff
                 {
                     return buffList.FindAll(buff => buff.Caster == caster);
                 }
-                Log.Error(parent.ToString() + " Can't Find Buff: Cause target is Empty ");
+
+                Log.Error(parent + " Can't Find Buff: Cause target is Empty ");
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
+
             return default;
         }
+
         public List<Buff> FindAll()
         {
             return buffList;
@@ -699,28 +775,30 @@ namespace RimBuff
             try
             {
                 base.PostExposeData();
-                Scribe_Collections.Look<Buff>(ref buffList, true, "buffList", LookMode.Deep, new object[0]);
-                if (Scribe.mode == LoadSaveMode.LoadingVars)
+                Scribe_Collections.Look(ref buffList, true, "buffList", LookMode.Deep);
+                if (Scribe.mode != LoadSaveMode.LoadingVars)
                 {
-                    if (buffList == null)
+                    return;
+                }
+
+                if (buffList == null)
+                {
+                    buffList = new List<Buff>();
+                    Log.Message("BuffList is null. Auto Create New BuffList");
+                }
+
+                foreach (var buff in buffList)
+                {
+                    if (buff != null)
                     {
-                        buffList = new List<Buff>();
-                        Log.Message("BuffList is null. Auto Create New BuffList");
-                    }
-                    for (var i = 0; i < this.buffList.Count; i++)
-                    {
-                        if (buffList[i] != null)
-                        {
-                            buffList[i].Owner = this;
-                        }
+                        buff.Owner = this;
                     }
                 }
             }
             catch (Exception ee)
             {
-                Log.Error("Error : " + ee.ToString());
+                Log.Error("Error : " + ee);
             }
         }
-        #endregion        
     }
 }
