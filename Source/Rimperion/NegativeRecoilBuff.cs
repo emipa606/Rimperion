@@ -3,68 +3,67 @@ using System.Collections;
 using RimBuff;
 using Verse;
 
-namespace NegativeRecoil
+namespace NegativeRecoil;
+
+public class NegativeRecoilBuff : Buff
 {
-    public class NegativeRecoilBuff : Buff
+    private float additionalAccuracy = 1f;
+
+    public NegativeRecoilBuff()
     {
-        private float additionalAccuracy = 1f;
+    }
 
-        public NegativeRecoilBuff()
+    public NegativeRecoilBuff(NegativeRecoilBuffDef buffDef, ThingWithComps caster) : base(buffDef, caster)
+    {
+        additionalAccuracy = buffDef.additionalAccuracy;
+    }
+
+    public float AdditionalAccuracy => additionalAccuracy;
+
+    public override void AddOverlapLevel(int level)
+    {
+        base.AddOverlapLevel(level);
+    }
+
+    public override IEnumerator TickTest(int interval)
+    {
+        while (true)
         {
-        }
-
-        public NegativeRecoilBuff(NegativeRecoilBuffDef buffDef, ThingWithComps caster) : base(buffDef, caster)
-        {
-            additionalAccuracy = buffDef.additionalAccuracy;
-        }
-
-        public float AdditionalAccuracy => additionalAccuracy;
-
-        public override void AddOverlapLevel(int level)
-        {
-            base.AddOverlapLevel(level);
-        }
-
-        public override IEnumerator TickTest(int interval)
-        {
-            while (true)
+            currentDuration += interval;
+            if (currentDuration >= duration)
             {
-                currentDuration += interval;
-                if (currentDuration >= duration)
-                {
-                    OnDurationExpire();
-                }
-
-                yield return null;
+                OnDurationExpire();
             }
+
+            yield return null;
         }
+    }
 
-        public override void OnRefresh()
+    public override void OnRefresh()
+    {
+        currentDuration = 0;
+    }
+
+    public override void OnDurationExpire()
+    {
+        CurrentOverlapLevel -= 1;
+        OnRefresh();
+        if (CurrentOverlapLevel <= 0)
         {
-            currentDuration = 0;
+            owner.RemoveBuff(this);
         }
+    }
 
-        public override void OnDurationExpire()
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        try
         {
-            CurrentOverlapLevel -= 1;
-            OnRefresh();
-            if (CurrentOverlapLevel <= 0)
-            {
-                owner.RemoveBuff(this);
-            }
+            Scribe_Values.Look(ref additionalAccuracy, "additionalAccuracy");
         }
-
-        public override void ExposeData()
+        catch (Exception ee)
         {
-            base.ExposeData();
-            try
-            {
-                Scribe_Values.Look(ref additionalAccuracy, "additionalAccuracy");
-            }
-            catch (Exception ee)
-            {
-                Log.Error("Error : " + ee);
-            }
+            Log.Error($"Error : {ee}");
         }
     }
 }

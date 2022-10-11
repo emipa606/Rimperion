@@ -2,15 +2,14 @@
 using HarmonyLib;
 using Verse;
 
-namespace RimBuff
+namespace RimBuff;
+
+[StaticConstructorOnStartup]
+public static class RimBuffPatch
 {
-    [StaticConstructorOnStartup]
-    public static class RimBuffPatch
+    static RimBuffPatch()
     {
-        static RimBuffPatch()
-        {
-            var harmonyInstance = new Harmony("com.RimBuffPatch.rimworld.mod");
-            harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
-        }
+        var harmonyInstance = new Harmony("com.RimBuffPatch.rimworld.mod");
+        harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
     }
 }

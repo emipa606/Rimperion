@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
 
-namespace RimBuff
+namespace RimBuff;
+
+public static class BuffController
 {
-    public static class BuffController
+    private static List<CompBuffManager> compList = new List<CompBuffManager>();
+
+    public static List<CompBuffManager> CompList
     {
-        private static List<CompBuffManager> compList = new List<CompBuffManager>();
-
-        public static List<CompBuffManager> CompList
+        get
         {
-            get
+            if (compList == null)
             {
-                if (compList == null)
-                {
-                    compList = new List<CompBuffManager>();
-                }
-
-                return compList;
+                compList = new List<CompBuffManager>();
             }
+
+            return compList;
         }
+    }
 
-        public static void Tick()
+    public static void Tick()
+    {
+        foreach (var compBuffManager in compList)
         {
-            foreach (var compBuffManager in compList)
-            {
-                compBuffManager.Tick();
-            }
+            compBuffManager.Tick();
         }
     }
 }

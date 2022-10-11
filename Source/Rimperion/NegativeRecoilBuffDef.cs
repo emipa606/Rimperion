@@ -1,9 +1,8 @@
 ﻿using RimBuff;
 
-namespace NegativeRecoil
+namespace NegativeRecoil;
+
+public class NegativeRecoilBuffDef : BuffDef
 {
-    public class NegativeRecoilBuffDef : BuffDef
-    {
-        public float additionalAccuracy;
-    }
+    public float additionalAccuracy;
 }

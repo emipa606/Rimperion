@@ -2,49 +2,48 @@
 using RimBuff;
 using Verse;
 
-namespace NegativeRecoil
+namespace NegativeRecoil;
+
+public class Verb_NegativeRecoil_Shoot : Verb_Shoot
 {
-    public class Verb_NegativeRecoil_Shoot : Verb_Shoot
+    private CompBuffManager compBuffM;
+    private NegativeRecoilProperties properties;
+
+    protected override bool TryCastShot()
     {
-        private CompBuffManager compBuffM;
-        private NegativeRecoilProperties properties;
-
-        protected override bool TryCastShot()
+        var result = base.TryCastShot();
+        try
         {
-            var result = base.TryCastShot();
-            try
+            if (compBuffM == null)
             {
-                if (compBuffM == null)
-                {
-                    compBuffM = EquipmentSource.GetComp<CompBuffManager>();
-                    properties = (NegativeRecoilProperties) verbProps;
-                }
-
-                //네거티브 리코일 버프가 없다면
-                if (!(compBuffM.FindWithDef(properties.weaponBuffDef) is NegativeRecoilBuff nRWBuff))
-                {
-                    compBuffM.AddBuff(properties.weaponBuffDef, EquipmentSource);
-                }
-                else
-                {
-                    nRWBuff.AddOverlapLevel(1);
-                }
-
-                if (!(compBuffM.FindWithDef(properties.pawnBuffDef) is NegativeRecoilBuff nRPBuff))
-                {
-                    compBuffM.AddBuff(properties.pawnBuffDef, EquipmentSource);
-                }
-                else
-                {
-                    nRPBuff.AddOverlapLevel(1);
-                }
-            }
-            catch (Exception ee)
-            {
-                Log.Error("Error : " + ee);
+                compBuffM = EquipmentSource.GetComp<CompBuffManager>();
+                properties = (NegativeRecoilProperties)verbProps;
             }
 
-            return result;
+            //네거티브 리코일 버프가 없다면
+            if (compBuffM.FindWithDef(properties.weaponBuffDef) is not NegativeRecoilBuff nRWBuff)
+            {
+                compBuffM.AddBuff(properties.weaponBuffDef, EquipmentSource);
+            }
+            else
+            {
+                nRWBuff.AddOverlapLevel(1);
+            }
+
+            if (compBuffM.FindWithDef(properties.pawnBuffDef) is not NegativeRecoilBuff nRPBuff)
+            {
+                compBuffM.AddBuff(properties.pawnBuffDef, EquipmentSource);
+            }
+            else
+            {
+                nRPBuff.AddOverlapLevel(1);
+            }
         }
+        catch (Exception ee)
+        {
+            Log.Error($"Error : {ee}");
+        }
+
+        return result;
     }
 }
