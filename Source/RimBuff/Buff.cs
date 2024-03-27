@@ -6,7 +6,7 @@ namespace RimBuff;
 
 public class Buff : IExposable
 {
-    protected bool canDespell = true;
+    protected readonly bool canDespell = true;
 
     protected ThingWithComps caster;
     protected int currentDuration;

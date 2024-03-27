@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using RimBuff;
 using RimWorld;
 using UnityEngine;
@@ -35,7 +34,7 @@ public class StatPart_AdditionalWeaponAccuracy : StatPart
 
             var buffComp = weaponThing.GetComp<CompBuffManager>();
 
-            if (buffComp?.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) is not NegativeRecoilBuff buff
+            if (buffComp?.FindWithTags(["NegativeRecoil", "Weapon"]) is not NegativeRecoilBuff buff
                )
             {
                 return;
@@ -69,7 +68,7 @@ public class StatPart_AdditionalWeaponAccuracy : StatPart
                     if (req.Thing is ThingWithComps weaponThing)
                     {
                         var buffComp = weaponThing.GetComp<CompBuffManager>();
-                        if (buffComp?.FindWithTags(new List<string> { "NegativeRecoil", "Weapon" }) is
+                        if (buffComp?.FindWithTags(["NegativeRecoil", "Weapon"]) is
                             NegativeRecoilBuff buff)
                         {
                             string text = "StatReport_AdditionalWeaponAccuracy".Translate() + ": +" +

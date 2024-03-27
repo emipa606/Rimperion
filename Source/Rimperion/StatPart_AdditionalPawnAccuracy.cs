@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RimBuff;
+﻿using RimBuff;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -29,7 +28,7 @@ public class StatPart_AdditionalPawnAccuracy : StatPart
 
             var compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
 
-            if (compBuffManager?.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) is not NegativeRecoilBuff
+            if (compBuffManager?.FindWithTags(["NegativeRecoil", "Pawn"]) is not NegativeRecoilBuff
                 buff)
             {
                 return;
@@ -58,7 +57,7 @@ public class StatPart_AdditionalPawnAccuracy : StatPart
                     if (pawn.equipment.Primary.def.weaponTags.Contains("NegativeRecoil"))
                     {
                         var compBuffManager = pawn.equipment.Primary.GetComp<CompBuffManager>();
-                        if (compBuffManager?.FindWithTags(new List<string> { "NegativeRecoil", "Pawn" }) is
+                        if (compBuffManager?.FindWithTags(["NegativeRecoil", "Pawn"]) is
                             NegativeRecoilBuff buff)
                         {
                             string text = "StatReport_AdditionalPawnAccuracy".Translate() + ": +" +

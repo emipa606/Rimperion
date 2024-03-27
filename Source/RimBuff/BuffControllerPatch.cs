@@ -3,8 +3,7 @@ using Verse;
 
 namespace RimBuff;
 
-[HarmonyPatch(typeof(TickManager))]
-[HarmonyPatch("DoSingleTick")]
+[HarmonyPatch(typeof(TickManager), nameof(TickManager.DoSingleTick))]
 internal class BuffControllerPatch
 {
     private static bool Prefix()

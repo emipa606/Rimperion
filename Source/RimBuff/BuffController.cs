@@ -4,7 +4,7 @@ namespace RimBuff;
 
 public static class BuffController
 {
-    private static List<CompBuffManager> compList = new List<CompBuffManager>();
+    private static List<CompBuffManager> compList = [];
 
     public static List<CompBuffManager> CompList
     {
@@ -12,7 +12,7 @@ public static class BuffController
         {
             if (compList == null)
             {
-                compList = new List<CompBuffManager>();
+                compList = [];
             }
 
             return compList;

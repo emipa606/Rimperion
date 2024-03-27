@@ -33,6 +33,7 @@ public class NegativeRecoilBuff : Buff
             if (currentDuration >= duration)
             {
                 OnDurationExpire();
+                yield break;
             }
 
             yield return null;

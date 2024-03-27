@@ -9,7 +9,6 @@ public static class RimBuffPatch
 {
     static RimBuffPatch()
     {
-        var harmonyInstance = new Harmony("com.RimBuffPatch.rimworld.mod");
-        harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+        new Harmony("com.RimBuffPatch.rimworld.mod").PatchAll(Assembly.GetExecutingAssembly());
     }
 }

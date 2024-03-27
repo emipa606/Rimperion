@@ -10,7 +10,7 @@ public class CompBuffManager : ThingComp
 
     public CompBuffManager()
     {
-        buffList = new List<Buff>();
+        buffList = [];
 
         BuffController.CompList.Add(this);
     }
@@ -21,7 +21,7 @@ public class CompBuffManager : ThingComp
         {
             if (buffList == null)
             {
-                buffList = new List<Buff>();
+                buffList = [];
             }
 
             return buffList;
@@ -737,7 +737,7 @@ public class CompBuffManager : ThingComp
         try
         {
             base.PostExposeData();
-            Scribe_Collections.Look(ref buffList, true, "buffList", LookMode.Deep);
+            Scribe_Collections.Look(ref buffList, "buffList", LookMode.Deep);
             if (Scribe.mode != LoadSaveMode.LoadingVars)
             {
                 return;
@@ -745,7 +745,7 @@ public class CompBuffManager : ThingComp
 
             if (buffList == null)
             {
-                buffList = new List<Buff>();
+                buffList = [];
                 Log.Message("BuffList is null. Auto Create New BuffList");
             }
 
