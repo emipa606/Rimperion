@@ -6,48 +6,31 @@ namespace RimBuff;
 
 public class Buff : IExposable
 {
-    protected readonly bool canDespell = true;
-
-    protected ThingWithComps caster;
+    private ThingWithComps caster;
     protected int currentDuration;
 
-    protected int currentOverlapLevel;
-    protected int currentRepeatCycle;
-    protected BuffDef def;
+    private int currentOverlapLevel;
+    private int currentRepeatCycle;
+    private BuffDef def;
     protected int duration;
-    protected int maxOverlapLevel;
+    private int maxOverlapLevel;
     protected CompBuffManager owner;
-    protected int repeatCycle;
+    private int repeatCycle;
 
-    protected int spellLevel;
-    protected string uniqueID = string.Empty;
+    private int spellLevel;
+    private string uniqueID;
 
-    public Buff()
+    protected Buff()
     {
         uniqueID = $"NeedDefName_{GetHashCode()}";
     }
 
-    public Buff(BuffDef buffDef)
+    protected Buff(BuffDef buffDef, ThingWithComps caster)
     {
         def = buffDef;
         uniqueID = $"{def.defName}_{GetHashCode()}";
 
-        canDespell = buffDef.canDespell;
-
-        caster = null;
-
-        spellLevel = buffDef.spellLevel;
-        maxOverlapLevel = buffDef.maxOverlapLevel;
-        duration = buffDef.duration.SecondsToTicks();
-        repeatCycle = buffDef.duration.SecondsToTicks();
-    }
-
-    public Buff(BuffDef buffDef, ThingWithComps caster)
-    {
-        def = buffDef;
-        uniqueID = $"{def.defName}_{GetHashCode()}";
-
-        canDespell = buffDef.canDespell;
+        CanDespell = buffDef.canDespell;
 
         this.caster = caster;
 
@@ -74,7 +57,7 @@ public class Buff : IExposable
         set => owner = value;
     }
 
-    public bool CanDespell => canDespell;
+    public bool CanDespell { get; } = true;
 
     public int SpellLevel => spellLevel;
 
@@ -138,7 +121,7 @@ public class Buff : IExposable
         OnRefresh();
     }
 
-    public virtual void OnRefresh()
+    protected virtual void OnRefresh()
     {
     }
 
@@ -163,30 +146,9 @@ public class Buff : IExposable
         }
 
         OnDurationExpire();
-    } //test
+    }
 
-    /*
-    public virtual void Tick(int interval)
-    {
-        if (currentDuration >= duration)
-        {
-            OnDurationExpire();
-        }
-        else
-        {
-            currentDuration += interval;
-        }
-        if (currentRepeatCycle >= repeatCycle)
-        {
-            OnIterate();
-            currentRepeatCycle = 0;
-        }
-        else
-        {
-            currentRepeatCycle += interval;
-        }
-    }*/
-    public virtual void OnCreate()
+    protected virtual void OnCreate()
     {
     }
 
@@ -194,14 +156,14 @@ public class Buff : IExposable
     {
     }
 
-    public virtual void OnIterate()
+    protected virtual void OnIterate()
     {
     }
 
     /// <summary>
     ///     Basically when duration expires, the buff is destroyed.
     /// </summary>
-    public virtual void OnDurationExpire()
+    protected virtual void OnDurationExpire()
     {
         Owner.RemoveBuff(this);
     }

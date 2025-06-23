@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: NegativeRecoil -->
+  <NegativeRecoil.label>NegativeRecoil</NegativeRecoil.label>
+  <!-- EN: To control recoil by utilizing energy generated at gun launch. -->
+  <NegativeRecoil.description>To control recoil by utilizing energy generated at gun launch.</NegativeRecoil.description>
+</LanguageData>

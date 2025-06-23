@@ -40,12 +40,12 @@ public class NegativeRecoilBuff : Buff
         }
     }
 
-    public override void OnRefresh()
+    protected override void OnRefresh()
     {
         currentDuration = 0;
     }
 
-    public override void OnDurationExpire()
+    protected override void OnDurationExpire()
     {
         CurrentOverlapLevel -= 1;
         OnRefresh();

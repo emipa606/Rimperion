@@ -10,10 +10,7 @@ public static class BuffController
     {
         get
         {
-            if (compList == null)
-            {
-                compList = [];
-            }
+            compList ??= [];
 
             return compList;
         }

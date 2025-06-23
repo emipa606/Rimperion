@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Rimperion_AR_Bullet -->
+  <Bullet_Rimperion_AR.label>Rimperion_AR_Bullet</Bullet_Rimperion_AR.label>
+  <!-- EN: Rimperion_HG_Bullet -->
+  <Bullet_Rimperion_HG.label>Rimperion_HG_Bullet</Bullet_Rimperion_HG.label>
+  <!-- EN: Rimperion_LMG_Bullet -->
+  <Bullet_Rimperion_LMG.label>Rimperion_LMG_Bullet</Bullet_Rimperion_LMG.label>
+  <!-- EN: Rimperion_RF_Bullet -->
+  <Bullet_Rimperion_RF.label>Rimperion_RF_Bullet</Bullet_Rimperion_RF.label>
+  <!-- EN: Rimperion_SG_Bullet -->
+  <Bullet_Rimperion_SG.label>Rimperion_SG_Bullet</Bullet_Rimperion_SG.label>
+  <!-- EN: Rimperion_SMG_Bullet -->
+  <Bullet_Rimperion_SMG.label>Rimperion_SMG_Bullet</Bullet_Rimperion_SMG.label>
+  <!-- EN: Hyperion Assult Rifle -->
+  <Gun_Rimperion_AR.label>Hyperion Assult Rifle</Gun_Rimperion_AR.label>
+  <!-- EN: "Negotiation", AR with Hyperion negative recoil.This product can only be met at RimWorld. -->
+  <Gun_Rimperion_AR.description>"Negotiation", AR with Hyperion negative recoil.This product can only be met at RimWorld.</Gun_Rimperion_AR.description>
+  <!-- EN: stock -->
+  <Gun_Rimperion_AR.tools.stock.label>stock</Gun_Rimperion_AR.tools.stock.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_AR.tools.barrel.label>barrel</Gun_Rimperion_AR.tools.barrel.label>
+  <!-- EN: Hyperion Assult Rifle -->
+  <Gun_Rimperion_AR.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion Assult Rifle</Gun_Rimperion_AR.verbs.Verb_NegativeRecoil_Shoot.label>
+  <!-- EN: Hyperion Pistol -->
+  <Gun_Rimperion_HG.label>Hyperion Pistol</Gun_Rimperion_HG.label>
+  <!-- EN: "Vision" the basic pistol of Hyperion.Hold gently in your hands and shoot. -->
+  <Gun_Rimperion_HG.description>"Vision" the basic pistol of Hyperion.Hold gently in your hands and shoot.</Gun_Rimperion_HG.description>
+  <!-- EN: grip -->
+  <Gun_Rimperion_HG.tools.grip.label>grip</Gun_Rimperion_HG.tools.grip.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_HG.tools.barrel.label>barrel</Gun_Rimperion_HG.tools.barrel.label>
+  <!-- EN: Hyperion Pistol -->
+  <Gun_Rimperion_HG.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion Pistol</Gun_Rimperion_HG.verbs.Verb_NegativeRecoil_Shoot.label>
+  <!-- EN: Hyperion LMG -->
+  <Gun_Rimperion_LMG.label>Hyperion LMG</Gun_Rimperion_LMG.label>
+  <!-- EN: "Guarantee",LMG with Hyperion negative recoil.A masterpiece. -->
+  <Gun_Rimperion_LMG.description>"Guarantee",LMG with Hyperion negative recoil.A masterpiece.</Gun_Rimperion_LMG.description>
+  <!-- EN: stock -->
+  <Gun_Rimperion_LMG.tools.stock.label>stock</Gun_Rimperion_LMG.tools.stock.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_LMG.tools.barrel.label>barrel</Gun_Rimperion_LMG.tools.barrel.label>
+  <!-- EN: Hyperion LMG -->
+  <Gun_Rimperion_LMG.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion LMG</Gun_Rimperion_LMG.verbs.Verb_NegativeRecoil_Shoot.label>
+  <!-- EN: Hyperion Rifle -->
+  <Gun_Rimperion_RF.label>Hyperion Rifle</Gun_Rimperion_RF.label>
+  <!-- EN: "Transaction", RF with Hyperion negative recoil.Best Sniper, Best Rifle. -->
+  <Gun_Rimperion_RF.description>"Transaction", RF with Hyperion negative recoil.Best Sniper, Best Rifle.</Gun_Rimperion_RF.description>
+  <!-- EN: stock -->
+  <Gun_Rimperion_RF.tools.stock.label>stock</Gun_Rimperion_RF.tools.stock.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_RF.tools.barrel.label>barrel</Gun_Rimperion_RF.tools.barrel.label>
+  <!-- EN: Hyperion Rifle -->
+  <Gun_Rimperion_RF.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion Rifle</Gun_Rimperion_RF.verbs.Verb_NegativeRecoil_Shoot.label>
+  <!-- EN: Hyperion ShotGun -->
+  <Gun_Rimperion_SG.label>Hyperion ShotGun</Gun_Rimperion_SG.label>
+  <!-- EN: "Crowdsourcing", SG with Hyperion negative recoil.It's as hot as Hansom Jack. -->
+  <Gun_Rimperion_SG.description>"Crowdsourcing", SG with Hyperion negative recoil.It's as hot as Hansom Jack.</Gun_Rimperion_SG.description>
+  <!-- EN: stock -->
+  <Gun_Rimperion_SG.tools.stock.label>stock</Gun_Rimperion_SG.tools.stock.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_SG.tools.barrel.label>barrel</Gun_Rimperion_SG.tools.barrel.label>
+  <!-- EN: Hyperion ShotGun -->
+  <Gun_Rimperion_SG.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion ShotGun</Gun_Rimperion_SG.verbs.Verb_NegativeRecoil_Shoot.label>
+  <!-- EN: Hyperion SMG -->
+  <Gun_Rimperion_SMG.label>Hyperion SMG</Gun_Rimperion_SMG.label>
+  <!-- EN: "Backburner",SMG with Hyperion negative recoil. Feel the vividness of perfection on the spot. -->
+  <Gun_Rimperion_SMG.description>"Backburner",SMG with Hyperion negative recoil. Feel the vividness of perfection on the spot.</Gun_Rimperion_SMG.description>
+  <!-- EN: grip -->
+  <Gun_Rimperion_SMG.tools.grip.label>grip</Gun_Rimperion_SMG.tools.grip.label>
+  <!-- EN: barrel -->
+  <Gun_Rimperion_SMG.tools.barrel.label>barrel</Gun_Rimperion_SMG.tools.barrel.label>
+  <!-- EN: Hyperion SMG -->
+  <Gun_Rimperion_SMG.verbs.Verb_NegativeRecoil_Shoot.label>Hyperion SMG</Gun_Rimperion_SMG.verbs.Verb_NegativeRecoil_Shoot.label>
+</LanguageData>

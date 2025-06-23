@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="RimBuff/RimBuff.csproj" />
+  <Project Path="Rimperion/Rimperion.csproj" />
+  <Properties Name="ExtensibilityGlobals" Scope="PostLoad">
+    <Property Name="BuildVersion_StartDate" Value="2000/1/1" />
+    <Property Name="BuildVersion_UpdateAssemblyVersion" Value="True" />
+    <Property Name="BuildVersion_UpdateFileVersion" Value="True" />
+    <Property Name="BuildVersion_UseGlobalSettings" Value="True" />
+    <Property Name="BuildVersion_UseUniversalClock" Value="True" />
+  </Properties>
+</Solution>
